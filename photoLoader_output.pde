@@ -2,11 +2,11 @@
 PImage[] images = new PImage[6];
 String[] fileLocations;
 
-String path = "/Users/digitalmedialab/Documents/Processing/processing_photoLoader/data/";
+String path = "/Users/digitalmedialab/Documents/Processing/photoLoader_output/data/";
 
 void setup() {
   background(0);
-  size(519, 600);
+  size(1038, 1200);
   imageMode(CENTER);
   
   loadFiles();
@@ -30,7 +30,12 @@ void draw() {
 }
 
 void drawImages() {
+  scale(2);
   imageMode(CORNER);
+  pushMatrix();
+  translate(width/2, height/2);
+  rotate(radians(45));
+  translate(0,0);
   for (int i = 0; i <= images.length-1; i++) {
     switch (i) {
       case 0:
@@ -55,4 +60,5 @@ void drawImages() {
         break;
     }
   }
+  popMatrix();
 }

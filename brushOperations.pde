@@ -9,7 +9,7 @@ void brushSetup ()
 {
   bouncers = new ArrayList();
 
-  for (int i = 0; i < 200; i++)
+  for (int i = 0; i < 10; i++)
   {
     Mover m = new Mover();
     bouncers.add (m);
