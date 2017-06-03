@@ -2,18 +2,18 @@
 PImage[] images = new PImage[6];
 String[] fileLocations;
 
-String path = "/Users/digitalmedialab/Documents/Processing/photoLoader_output/data/";
+String path = "/Users/hughsato/Documents/Processing/photoLoader_output/data/";
 
 void setup() {
   background(0);
   size(1038, 1200);
   imageMode(CENTER);
-  
+
   loadFiles();
   loadFilesToImages();
-  
+
   frameRate(30);
-  brushSetup();
+  // brushSetup();
   smooth();
 }
 
@@ -24,18 +24,14 @@ void draw() {
     loadFiles();
     loadFilesToImages();
   }
-  
+
   drawImages();
-  brushDraw();
+  // brushDraw();
 }
 
 void drawImages() {
   scale(2);
   imageMode(CORNER);
-  pushMatrix();
-  translate(width/2, height/2);
-  rotate(radians(45));
-  translate(0,0);
   for (int i = 0; i <= images.length-1; i++) {
     switch (i) {
       case 0:
@@ -46,7 +42,7 @@ void drawImages() {
         break;
       case 2:
         image(maskImg(images[i], 0), 259.808, 150);
-        break; 
+        break;
       case 3:
         image(maskImg(images[i], 1), 219.618, 300);
         break;
@@ -60,5 +56,4 @@ void drawImages() {
         break;
     }
   }
-  popMatrix();
 }
