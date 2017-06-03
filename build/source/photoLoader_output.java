@@ -3,6 +3,8 @@ import processing.data.*;
 import processing.event.*; 
 import processing.opengl.*; 
 
+import java.io.File; 
+import java.io.FilenameFilter; 
 import java.util.Collections; 
 
 import java.util.HashMap; 
@@ -31,7 +33,7 @@ public void setup() {
   loadFilesToImages();
 
   frameRate(30);
-  brushSetup();
+  // brushSetup();
   
 }
 
@@ -44,7 +46,7 @@ public void draw() {
   }
 
   drawImages();
-  brushDraw();
+  // brushDraw();
 }
 
 public void drawImages() {
@@ -525,6 +527,9 @@ public void mousePressed ()
     }
   }
 }
+
+
+
 public void loadFiles() {
   println("loading files");
   fileLocations = listFileNames(path + "images/");
@@ -533,8 +538,20 @@ public void loadFiles() {
 public String[] listFileNames(String dir) {
   File file = new File(dir);
   if (file.isDirectory()) {
-    String names[] = file.list();
-    
+
+    // adding a section to avoid adding .DS_Store
+    FilenameFilter jpgFilter = new FilenameFilter() {
+			public boolean accept(File dir, String name) {
+				String lowercaseName = name.toLowerCase();
+				if (lowercaseName.endsWith(".jpg")) {
+					return true;
+				} else {
+					return false;
+				}
+			}
+		};
+
+    String names[] = file.list(jpgFilter);
     println("found ", names.length, " files");
     return names;
   } else {
